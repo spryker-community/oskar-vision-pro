@@ -1,0 +1,85 @@
+{% extends model('component') %}
+
+{% define config = {
+    name: 'navigation-top-mobile',
+    tag: 'nav'
+} %}
+
+{% define data = {
+    url: '/',
+    searchUrl: path('search'),
+    cartQuantity: getCartQuantity(),
+    isAjaxMode: false,
+    ajaxCartUrl: '',
+} %}
+
+{% block body %}
+    {% set items = [
+        {
+            iconName: 'icon-hamburger',
+            isButton: true,
+            jsClass: 'js-page-layout-main__side-drawer-trigger'
+        },
+        {
+            iconName: 'search',
+            isButton: true,
+            jsClass: 'js-header__search-open'
+        },
+        {
+            iconName: 'wishlist',
+            url: url('wishlist/overview')
+        },
+        {
+            iconName: 'user-account',
+            url: url('customer/overview'),
+            isButton: is_granted('IS_AUTHENTICATED_FULLY') ? true : false,
+            jsClass: 'js-page-layout-main__account-side-drawer-trigger'
+        },
+        {
+            iconName: 'cart',
+            isEmbed: true,
+            isCart: true
+        }
+    ] %}
+
+    <ul class="grid grid--middle grid--justify">
+        {% for item in items %}
+            {% if item.isEmbed is defined %}
+                {% embed molecule('navigation-top-mobile-item') with {
+                    class: 'col',
+                    data: {
+                        iconName: item.iconName
+                    },
+                    embed: {
+                        item: item,
+                        cartQuantity: data.cartQuantity,
+                        ajaxCartUrl: data.isAjaxMode ? data.ajaxCartUrl : null,
+                    }
+                } only %}
+                    {% block button %}
+                        {% if embed.item.isCart is defined %}
+                            {% include molecule('cart-counter') with {
+                                modifiers: ['mobile'],
+                                data: {
+                                    quantity: embed.cartQuantity,
+                                    ajaxCartUrl: embed.ajaxCartUrl ~ '?counterOnly=true',
+                                    ajaxClassSuffix: 'mobile',
+                                },
+                            } only %}
+                        {% endif %}
+                    {% endblock %}
+                {% endembed %}
+            {% else %}
+                {% include molecule('navigation-top-mobile-item') with {
+                    class: 'col',
+                    data: {
+                        url: item.url is defined ? item.url : data.url,
+                        iconName: item.iconName,
+                        isButton: item.isButton is defined ? item.isButton : false,
+                        jsClass: item.jsClass is defined ? item.jsClass : ''
+                    }
+                } only %}
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}

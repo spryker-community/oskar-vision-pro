@@ -1,0 +1,80 @@
+{% extends view('return-list', '@SprykerShop:SalesReturnPage') %}
+
+{% block salesReturnContentTitle %}
+    <div class="return-list-title">
+        <h5 class="title title--uppercase title--h6">{{ 'return_page.list.title' | trans }}</h5>
+    </div>
+{% endblock %}
+
+{% block salesReturnTable %}
+    {% set salesReturnTableClass = salesReturnTableClass ~ ' table--responsive' %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block salesReturnTableBody %}
+    <tbody>
+        {% for return in data.returns %}
+            {% set orderReferences = [] %}
+            {% set uniqueItemStates = [] %}
+            {% set itemStates = {} %}
+
+            {% for returnItem in return.returnItems %}
+                {% if returnItem.orderItem.orderReference not in orderReferences %}
+                    {% set orderReferences = orderReferences | merge([returnItem.orderItem.orderReference]) %}
+                {% endif %}
+                {% if returnItem.orderItem.state.name not in uniqueItemStates %}
+                    {% set uniqueItemStates = uniqueItemStates | merge([returnItem.orderItem.state.name]) %}
+
+                    {% set itemStates = itemStates | merge([{
+                        'status': returnItem.orderItem.state.name,
+                        'label': returnItem.orderItem.state.displayName ?? ('oms.state.' ~ returnItem.orderItem.state.name),
+                    }]) %}
+                {% endif %}
+            {% endfor %}
+
+            <tr class="table__tr table__tr--with-border">
+                <td class="transform-cell transform-cell--spacing-top" data-content="{{ 'return_page.return.return_ref' | trans }}">{{ return.returnReference }}</td>
+                <td class="transform-cell" data-content="{{ 'return_page.return.order_ref' | trans }}">
+                    <div>
+                        {% for orderReference in orderReferences %}
+                            {{- (not loop.first ? ', ') ~ orderReference -}}
+                        {% endfor %}
+                    </div>
+                </td>
+                <td class="transform-cell" data-content="{{ 'return_page.return.number_of_items' | trans }}">{{ return.returnItems | length | executeFilterIfExists('formatInt', app.locale) }}</td>
+                <td class="transform-cell" data-content="{{ 'return_page.return.date' | trans }}">{{ date(return.createdAt) | formatDateTime }}</td>
+                <td class="transform-cell transform-cell--spacing-bottom" data-content="{{ 'return_page.return.items_state' | trans }}">
+                    <div>
+                        {% for state in itemStates %}
+                            {% set stateName = state.status | replace({' ': '-'}) | lower %}
+
+                            {{ block('state') }}
+                        {% endfor %}
+                    </div>
+                </td>
+                <td class="table__actions">
+                    {{ block('returnActionsMenu') }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+{% endblock %}
+
+{% block returnActionsMenu %}
+    {% include molecule('table-action-list') with {
+        data: {
+            items: [
+                {
+                    url: path('return/view', { returnReference: (return.returnReference) }),
+                    title: 'return_page.return.view_return' | trans,
+                },
+                {
+                    url: path('return/slip-print', { returnReference: (return.returnReference) }),
+                    title: 'return_page.return.print_return' | trans,
+                    target: '_blank',
+                },
+            ],
+        },
+    } only %}
+{% endblock %}

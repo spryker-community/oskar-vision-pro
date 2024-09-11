@@ -1,0 +1,47 @@
+{% extends molecule('new-review-form', '@SprykerShop:ProductReviewWidget') %}
+
+{% block body %}
+    {% embed molecule('form') with {
+        modifiers: ['pdp-review-form'],
+        data: {
+            form: data.form,
+            options: {
+                action: data.action,
+            },
+            layout: {
+                'summary': 'col col--sm-12 col--md-8 col--lg-9 form__field--review',
+                'description': 'col col--sm-12 form__field--review',
+                'nickname': 'col col--sm-12 form__field--review',
+            },
+            submit: {
+                enable: true,
+                class: 'button',
+            },
+        },
+    } only %}
+        {% block field %}
+            {% if fieldName == 'rating' %}
+                <div class="col col--sm-12 col--md-4 col--lg-3 form__field form__field--review-rating">
+                    {% do field.setRendered %}
+                    
+                    <label>
+                        {{ form_label(field) }}
+
+                        {% include molecule('rating-selector', 'ProductReviewWidget') with {
+                            modifiers: ['expand', 'small', 'marginless'],
+                            data: {
+                                maxValue: (field.vars.choices | length) - 1,
+                                inputId: 'productReviewForm_rating',
+                                inputName: 'productReviewForm[rating]',
+                            },
+                        } only %}
+
+                        {{ form_errors(field) }}
+                    </label>
+                </div>
+            {% else %}
+                {{ parent() }}
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

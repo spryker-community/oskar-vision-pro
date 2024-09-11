@@ -1,0 +1,61 @@
+{% extends molecule('variant', '@SprykerShop:DiscountPromotionWidget') %}
+
+{% block body %}
+    {% set submitterKey = data.ajaxTriggerAttribute ?: 'data-form-submitter' %}
+    {% set submitterValue = data.ajaxTriggerAttribute ? 'change' : true %}
+
+    <strong class="{{ config.name }}__label">{{ data.label }}:</strong>
+
+    {% if data.selectedValue is null %}
+        {% if data.isAvailable %}
+            {% embed molecule('custom-select') with {
+                modifiers: ['hollow', 'discount'],
+                attributes: {
+                    name: data.formName,
+                    'config-width': 'auto',
+                    'config-theme': 'small',
+                    (submitterKey): submitterValue,
+                },
+                embed: {
+                    values: data.values,
+                },
+            } only %}
+                {% block options %}
+                    <option>{{ 'cart.select.default_value' | trans }}</option>
+                    {% for value in embed.values %}
+                        <option value="{{ value }}">{{ value }}</option>
+                    {% endfor %}
+                {% endblock %}
+            {% endembed %}
+        {% else %}
+            {{ 'product.attribute.not_available' | trans }}
+        {% endif %}
+    {% else %}
+        {% embed molecule('variant-resetter', 'ProductDetailPage') ignore missing with {
+            class: 'grid grid--inline grid--middle',
+            data: {
+                formName: data.formName,
+                selectedValue: data.selectedValue,
+            },
+            embed: {
+                ajaxTriggerAttribute: data.ajaxTriggerAttribute,
+            },
+            attributes: {
+                'ajax-mode': data.ajaxTriggerAttribute ?: null,
+            },
+        } only %}
+            {% block selectedValue %}
+                <span class="spacing-x spacing-x--big">
+                    {{ data.selectedValue }}
+                </span>
+                <button
+                    {% if embed.ajaxTriggerAttribute %} data-form-data-url-builder-skip-field="{{ data.formName }}" {{ embed.ajaxTriggerAttribute }} {% endif %}
+                    type="button"
+                    class="link link--darkest link--edit {{ config.jsName }}__trigger"
+                >
+                    {{- 'product.attribute.variant.reset' | trans -}}
+                </button>
+            {% endblock %}
+        {% endembed %}
+    {% endif %}
+{% endblock %}
