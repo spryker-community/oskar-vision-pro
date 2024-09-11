@@ -8,6 +8,8 @@ struct ContentView: View {
     @State private var show3DModel = false
     @State private var modelURL: String = ""
     @State private var quantity: Int = 1
+
+    @StateObject private var appState = AppState.shared
     
     @Environment(\.supportsMultipleWindows) private var supportsMultipleWindows
     @Environment(\.openWindow) private var openWindow
@@ -102,7 +104,7 @@ struct ContentView: View {
                                     Spacer()
                                     
                                     Button(action: {
-                                        // Add to cart action
+                                        self.appState.cartItems.append((product, quantity))
                                     }) {
                                         Text("Add to Cart")
                                             .font(.headline)

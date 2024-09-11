@@ -177,8 +177,11 @@ struct ProductListView: View {
                     // same for image urls
                     let newImageUrl = imageURL.replacingOccurrences(of: "http://yves.de.spryker.local", with: "https://6c27-213-61-226-202.ngrok-free.app")
 
+                    // save price from the original product
+                    let originalPrice = self.selectedProduct?.price ?? 0.0
+
                     print("Successfully parsed product: \(abstractName) with price \(price)")
-                    let product = Product(name: abstractName, price: price, imageURL: newImageUrl, description: description, sku: abstractSku, productModel: newProductModel)
+                    let product = Product(name: abstractName, price: originalPrice, imageURL: newImageUrl, description: description, sku: abstractSku, productModel: newProductModel)
 
                     DispatchQueue.main.async {
                         self.selectedProduct = product
