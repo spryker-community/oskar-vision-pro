@@ -17,7 +17,7 @@ struct OskarVisionProApp: App {
             VStack(spacing: 20) { // Added spacing for a gap
                 HeaderView()
                 HStack(alignment: .top, spacing: 20) {
-                    ProductListView(selectedProduct: $selectedProduct)
+                    ProductListView(selectedProduct: $selectedProduct, selectedCategory: $selectedCategory)
                     VStack {
                         CategoryList(selectedCategory: $selectedCategory)
                         ContentView(product: selectedProduct)
@@ -30,9 +30,13 @@ struct OskarVisionProApp: App {
         .windowResizability(.contentSize)
 
         WindowGroup(id: "animation") {
-            Model3DView()
+            if let product = selectedProduct, let modelURL = product.productModel, let url = URL(string: modelURL) {
+                Model3DView(url: url)
+            } else {
+                Text("No 3D model available")
+            }
         }
         .windowStyle(.plain)
-        .windowResizability(.contentSize)
+        .windowResizability(.automatic)
     }
 }

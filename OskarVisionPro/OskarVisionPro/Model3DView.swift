@@ -12,13 +12,11 @@ import SceneKit
 struct Model3DView: View {
     @State private var currentScale: Float = 1.0
     @State private var currentTranslation: SIMD3<Float> = SIMD3<Float>(0, 0, 0)
-
-    // Replace this with your 3D model's URL
-    let modelURL = URL(string: "https://essay-alerts-city-always.trycloudflare.com/models/box.usdz")!
+    let url: URL
 
     var body: some View {
         ZStack {
-            Model3DViewContainer(url: modelURL, currentScale: $currentScale, currentTranslation: $currentTranslation)
+            Model3DViewContainer(url: url, currentScale: $currentScale, currentTranslation: $currentTranslation)
                 .gesture(
                     DragGesture(minimumDistance: 0)
                         .onChanged { value in
@@ -61,5 +59,5 @@ struct Model3DViewContainer: View {
 }
 
 #Preview {
-    Model3DView()
+    Model3DView(url: URL(string: "https://essay-alerts-city-always.trycloudflare.com/models/box.usdz")!)
 }

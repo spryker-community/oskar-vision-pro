@@ -17,7 +17,6 @@ struct CategoryList: View {
                 ForEach(localCategories) { category in
                     Button(action: {
                         selectedCategory = category
-                        loadProducts(for: category.name)
                     }) {
                         HStack {
                             Image(systemName: "star.fill") // Dummy icon
