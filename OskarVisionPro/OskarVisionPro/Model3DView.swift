@@ -38,12 +38,6 @@ struct Model3DView: View {
                             currentScale = Float(value)
                         }
                 )
-                .gesture(
-                    RotateGesture()
-                        .onChanged { value in
-                            angle = value.rotation
-                        }
-                )
         }
     }
 }
@@ -66,6 +60,12 @@ struct Model3DViewContainer: View {
             .scaleEffect(CGFloat(currentScale))
             .offset(x: CGFloat(currentTranslation.x), y: CGFloat(currentTranslation.y))
             .rotationEffect(angle)
+            .gesture(
+                RotateGesture()
+                    .onChanged { value in
+                        angle = value.rotation
+                    }
+            )
             placeholder: do {
                ProgressView()
 
