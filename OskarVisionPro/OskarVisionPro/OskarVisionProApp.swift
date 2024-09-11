@@ -15,9 +15,12 @@ struct OskarVisionProApp: App {
         WindowGroup {
             VStack {
                 HeaderView()
-                HStack {
+                HStack(alignment: .top) {
                     ProductListView(selectedProduct: $selectedProduct)
-                    ContentView(product: selectedProduct)
+                    HStack {
+                        ContentView(product: selectedProduct)
+                    }
+                    OskarSupport()
                 }
             }
             //Model3DView()
