@@ -38,7 +38,7 @@ struct Model3DView: View {
                             currentTranslation = translation
                         }
                 )
-                rotation3DEffect(rotation, axis: rotationAxis)
+                .rotation3DEffect(rotation, axis: rotationAxis)
                 .gesture(
                     MagnificationGesture()
                         .onChanged { value in
@@ -66,10 +66,6 @@ struct Model3DViewContainer: View {
             )
             .scaleEffect(CGFloat(currentScale))
             .offset(x: CGFloat(currentTranslation.x), y: CGFloat(currentTranslation.y))
-            placeholder: do {
-               ProgressView()
-
-        }
     }
 }
 
