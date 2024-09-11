@@ -9,11 +9,12 @@ use Spryker\Glue\ProductsRestApi\Processor\AbstractProducts\AbstractProductsRead
 class AbstractProductsReader extends SprykerAbstractProductsReader
 {
     public const PRODUCT_MODEL_DATA = [
-        209 => '/assets/models/oskar.usdz',
+        216 => '/assets/models/oskar.usdz',
         998 => '\Pyz\Shared\ProductModel\Models\2.stl',
         997 => '\Pyz\Shared\ProductModel\Models\3.stl',
         996 => '\Pyz\Shared\ProductModel\Models\4.stl',
     ];
+    public const PREFIX = 'http://yves.de.spryker.local';
 
     /**
      * @param string $sku
@@ -75,7 +76,8 @@ class AbstractProductsReader extends SprykerAbstractProductsReader
         $idProductAbstract = $productAbstractData['id_product_abstract'];
 
         if (isset(static::PRODUCT_MODEL_DATA[$idProductAbstract])) {
-            $productAbstractData['product_model'] = static::PRODUCT_MODEL_DATA[$idProductAbstract];
+            $productAbstractData['product_model'] =
+                static::PREFIX . static::PRODUCT_MODEL_DATA[$idProductAbstract];
         }
 
         return $productAbstractData;
