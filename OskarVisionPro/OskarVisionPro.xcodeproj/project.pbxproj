@@ -20,6 +20,7 @@
 		62DA571E2C91BDA300ADFA92 /* OskarSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA571D2C91BDA300ADFA92 /* OskarSupport.swift */; };
 		62DA57202C91BE2800ADFA92 /* oskar.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DA571F2C91BE2800ADFA92 /* oskar.png */; };
 		62DA57222C91BF7100ADFA92 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA57212C91BF7100ADFA92 /* CategoryList.swift */; };
+		62DA57242C91CE8000ADFA92 /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA57232C91CE8000ADFA92 /* DemoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		62DA571D2C91BDA300ADFA92 /* OskarSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OskarSupport.swift; sourceTree = "<group>"; };
 		62DA571F2C91BE2800ADFA92 /* oskar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oskar.png; sourceTree = "<group>"; };
 		62DA57212C91BF7100ADFA92 /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
+		62DA57232C91CE8000ADFA92 /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				62DA571B2C91BAB300ADFA92 /* Model3DView.swift */,
 				62DA57152C91B2DE00ADFA92 /* ProductListView.swift */,
 				62DA57172C91B33900ADFA92 /* ProductData.swift */,
+				62DA57232C91CE8000ADFA92 /* DemoView.swift */,
 				62DA57052C91956100ADFA92 /* ImmersiveView.swift */,
 				62DA57072C91956200ADFA92 /* Assets.xcassets */,
 				62DA570C2C91956200ADFA92 /* Info.plist */,
@@ -190,6 +193,7 @@
 				62DA57042C91956100ADFA92 /* ContentView.swift in Sources */,
 				62DA57022C91956100ADFA92 /* OskarVisionProApp.swift in Sources */,
 				62DA571E2C91BDA300ADFA92 /* OskarSupport.swift in Sources */,
+				62DA57242C91CE8000ADFA92 /* DemoView.swift in Sources */,
 				62DA57062C91956100ADFA92 /* ImmersiveView.swift in Sources */,
 				62DA571C2C91BAB300ADFA92 /* Model3DView.swift in Sources */,
 				62DA57142C91B24300ADFA92 /* HeaderView.swift in Sources */,

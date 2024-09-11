@@ -10,26 +10,29 @@ import SwiftUI
 @main
 struct OskarVisionProApp: App {
     @State private var selectedProduct: Product?
+    @State private var selectedCategory: Category?
     
     var body: some Scene {
-        WindowGroup {
-            VStack {
+        WindowGroup(id: "main") {
+            VStack(spacing: 20) { // Added spacing for a gap
                 HeaderView()
-                HStack(alignment: .top) {
+                HStack(alignment: .top, spacing: 20) {
                     ProductListView(selectedProduct: $selectedProduct)
-                    HStack {
+                    VStack {
+                        CategoryList(selectedCategory: $selectedCategory)
                         ContentView(product: selectedProduct)
                     }
                     OskarSupport()
                 }
             }
-            //Model3DView()
         }
         .windowStyle(.plain)
         .windowResizability(.contentSize)
 
-        ImmersiveSpace(id: "ImmersiveSpace") {
-            ImmersiveView()
+        WindowGroup(id: "animation") {
+            Model3DView()
         }
+        .windowStyle(.plain)
+        .windowResizability(.contentSize)
     }
 }

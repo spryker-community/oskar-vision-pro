@@ -53,7 +53,11 @@ struct Model3DViewContainer: View {
             )
             .scaleEffect(CGFloat(currentScale))
             .offset(x: CGFloat(currentTranslation.x), y: CGFloat(currentTranslation.y))
-    }
+            placeholder: do {
+               ProgressView()
+           
+        }
+    } 
 }
 
 #Preview {
