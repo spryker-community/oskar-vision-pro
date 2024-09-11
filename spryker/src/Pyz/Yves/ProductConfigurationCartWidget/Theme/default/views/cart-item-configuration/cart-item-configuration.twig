@@ -1,0 +1,28 @@
+{% extends view('cart-item-configuration', 'SprykerShop:ProductConfigurationCartWidget') %}
+
+{% define data = {
+    wrapperClassName: '',
+    hasStatus: true,
+    modifiers: [],
+} %}
+
+{% block body %}
+    <div class="{{ data.wrapperClassName }}">
+        {{ parent() }}
+    </div>
+{% endblock %}
+
+{% block status %}
+    {% if data.hasStatus %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block optionsTemplate %}
+    {% include configurableTemplate ignore missing with {
+        data: {
+            listItems: productConfigurationTemplate.data,
+            modifiers: data.modifiers,
+        },
+    } only %}
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends molecule('address-item-form-field-list', '@SprykerShop:CheckoutPage') %}
+
+{% block body %}
+    {% for item in data.items %}
+        {% set isItemRelatedToBundle = item.vars.data.relatedBundleItemIdentifier %}
+
+        {% if not isItemRelatedToBundle %}
+            <div class="grid {{ config.jsName }}__item-shipping-{{ loop.index }}">
+                {% set shippingAddress = item.shippingAddress %}
+                {% set hasShippingAddresses = shippingAddress.id_customer_address is defined %}
+                {% set isNewAddressSelected = shippingAddress.id_customer_address.vars.value | default == 0 %}
+                {% set newAddressHiddenClassName = not isNewAddressSelected and hasShippingAddresses ? ' ' ~ data.hiddenClassName %}
+
+                {% embed molecule('product-card-item') with {
+                    class: 'col col--sm-12 col--lg-6',
+                    modifiers: ['expand', 'secondary', 'additional-info'],
+                    data: {
+                        productItem: item.vars.data,
+                        canEditCart: false,
+                        additionalContainerClass: '',
+                        productOptionsModifiers: ['alternative'],
+                    },
+                    embed: {
+                        item: item,
+                        hasShippingAddresses: hasShippingAddresses,
+                        jsName: config.jsName,
+                        addressSelectClassName: data.addressSelectClassName,
+                        index: loop.index,
+                    },
+                } only %}
+                    {% import _self as component %}
+                    {% block image %}
+                        <div class="{{ component.renderClass(config.name ~ '__image', modifiers) }} col">
+                            {% include molecule('product-image') with {
+                                modifiers: ['no-side-indent'],
+                                data: {
+                                    name: data.productItem.name,
+                                    image: data.productItem.images[0].externalUrlLarge ?? null,
+                                },
+                            } only %}
+                        </div>
+                    {% endblock %}
+
+                    {% block title %}
+                        <div class="{{ component.renderClass(config.name ~ '__title', modifiers) }} col">
+                            {{ data.productItem.name }}
+                        </div>
+                    {% endblock %}
+
+                    {% block options %}
+                        {% if data.productItem.concreteAttributes is not empty %}
+                            <ul>
+                                {% for key, item in data.productItem.concreteAttributes %}
+                                    <li>{{ ('product.attribute.' ~ key) | trans }}: {{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block additionalInfo %}
+                        {% if embed.hasShippingAddresses %}
+                            <div class="{{ component.renderClass(config.name ~ '__additional-info', modifiers) }} col">
+                                {{ form_row(embed.item.shippingAddress.id_customer_address, {
+                                    label: 'page.checkout.address.delivery.address_select' | trans,
+                                    attr: {
+                                        class: embed.addressSelectClassName ~ ' ' ~ embed.jsName ~ '__trigger--' ~ embed.index,
+                                    },
+                                }) }}
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block productConfigurationContent %}
+                        {% set hasStatus = false %}
+
+                        {{ parent() }}
+                    {% endblock %}
+
+                    {% block productConfigurationButton %}{% endblock %}
+
+                    {% block bundles %}{% endblock %}
+                {% endembed %}
+
+                <div class="{{ data.validationClassName }} col col--sm-12">
+                    {% include molecule('form') with {
+                        class: data.itemShippingClassName ~ ' ' ~ config.jsName ~ '__item-shipping ' ~ config.jsName ~ '__item-shipping--' ~ loop.index ~ newAddressHiddenClassName,
+                        modifiers: ['checkout-form'],
+                        data: {
+                            form: shippingAddress,
+                            enableStart: false,
+                            enableEnd: false,
+                            layout: {
+                                salutation: 'col col--sm-12 col--lg-3',
+                                first_name: 'col col--sm-12 col--lg-4',
+                                last_name: 'col col--sm-12 col--lg-5',
+                                address1: 'col col--sm-12 col--md-8 col--lg-9',
+                                address2: 'col col--sm-12 col--md-4 col--lg-3',
+                                zip_code: 'col col--sm-12 col--lg-3',
+                                city: 'col col--sm-12 col--lg-5',
+                                iso2_code: 'col col--sm-12 col--lg-4',
+                            },
+                        },
+                    } only %}
+
+                    {% include molecule('address-form-toggler', 'CustomerPage') ignore missing with {
+                        class: config.jsName ~ '__toggler',
+                        attributes: {
+                            'trigger-selector': '.' ~ config.jsName ~ '__trigger--' ~ loop.index,
+                            'target-selector': '.' ~ config.jsName ~ '__item-shipping--' ~ loop.index,
+                            'parent-target-class-name': config.jsName,
+                        },
+                    } only %}
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

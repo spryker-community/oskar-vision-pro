@@ -1,0 +1,23 @@
+@mixin shop-ui-footer-logo($name: '.footer-logo') {
+    #{$name} {
+        margin: rem(-5) 0 rem(5);
+
+        &__link {
+            display: block;
+            width: rem(90);
+
+            @include helper-breakpoint-media-min($md-min) {
+                width: rem(102);
+            }
+        }
+
+        &__image {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        @content;
+    }
+}
+
+@include shop-ui-footer-logo();

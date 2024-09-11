@@ -1,0 +1,36 @@
+@mixin shop-ui-logo($name: '.logo') {
+    #{$name} {
+        padding: rem(13);
+        border-bottom: rem(1) solid $setting-color-gray-1;
+
+        @include helper-breakpoint-media-min($md-min) {
+            border-bottom: none;
+        }
+
+        &__link {
+            display: block;
+            width: rem(150);
+
+            @include helper-breakpoint-media-min($md-min) {
+                width: rem(180);
+            }
+        }
+
+        &__image {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        &--checkout {
+            padding: rem(22) rem(13);
+
+            @include helper-breakpoint-media-min($md-min) {
+                padding: 0 0 rem(22);
+            }
+        }
+
+        @content;
+    }
+}
+
+@include shop-ui-logo();

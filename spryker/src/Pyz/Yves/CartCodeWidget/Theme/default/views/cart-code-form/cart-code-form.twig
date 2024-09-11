@@ -1,0 +1,20 @@
+{% extends template('widget') %}
+
+{% define data = {
+    form: _widget.cartCodeForm,
+    isQuoteEditable: _widget.isQuoteEditable,
+    ajaxTriggerAttribute: null,
+    redirectRoute: null,
+} %}
+
+{% block body %}
+    {% include molecule('cart-code-form', 'CartCodeWidget') with {
+        modifiers: ['checkout'],
+        data: {
+            form: data.form,
+            isQuoteEditable: data.isQuoteEditable,
+            ajaxTriggerAttribute: data.ajaxTriggerAttribute,
+            redirectRoute: data.redirectRoute,
+        },
+    } only %}
+{% endblock %}

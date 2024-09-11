@@ -1,0 +1,51 @@
+{% extends model('component') %}
+
+{% define config = {
+    name: 'cart-code-form',
+} %}
+
+{% define data = {
+    form: required,
+    isQuoteEditable: required,
+    redirectRoute: null,
+    ajaxTriggerAttribute: null,
+} %}
+
+{% block body %}
+    {% if data.isQuoteEditable %}
+        {% embed molecule('toggler-item') with {
+            modifiers: ['filter'],
+            data: {
+                title: 'cart.code.enter-code' | trans,
+                triggerClass: config.jsName ~ '__trigger',
+                targetClass: config.jsName ~ '__target',
+            },
+            embed: {
+                form: data.form,
+                ajaxTriggerAttribute: data.ajaxTriggerAttribute,
+                redirectRoute: data.redirectRoute,
+            },
+        } only %}
+            {% block contentText %}
+                {% set formActionRoute = embed.ajaxTriggerAttribute ? 'cart-code/code-async/add' : 'cart-code/code/add' %}
+
+                {% include molecule('form') with {
+                    modifiers: ['inline'],
+                    data: {
+                        form: embed.form,
+                        submit: {
+                            enable: true,
+                            text: 'cart.voucher.redeem' | trans,
+                            icon: null,
+                            class: 'button button--combined',
+                            attributes: embed.ajaxTriggerAttribute,
+                        },
+                        options: {
+                            action: embed.redirectRoute ? path(formActionRoute, {'redirectRouteName': embed.redirectRoute}) : path(formActionRoute)
+                        },
+                    },
+                } only %}
+            {% endblock %}
+        {% endembed %}
+    {% endif %}
+{% endblock %}

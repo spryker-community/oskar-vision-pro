@@ -1,0 +1,58 @@
+@include shop-ui-collapsible-list() {
+    $name: '.collapsible-list';
+
+    &__name {
+        text-transform: uppercase;
+        font: fw(bold) rem(13) / rem(22) $setting-font-family-additional;
+        letter-spacing: rem(2);
+        width: 100%;
+
+        @include helper-breakpoint(lg) {
+            width: 70%;
+            padding-top: rem(5);
+            padding-bottom: rem(5);
+        }
+    }
+
+    &__value {
+        font-size: rem(16);
+        font-weight: fw(regular);
+        line-height: rem(22);
+        color: $setting-color-gray-4;
+        padding-bottom: rem(5);
+        width: 100%;
+
+        @include helper-breakpoint(lg) {
+            width: 30%;
+            padding-top: rem(5);
+            padding-bottom: rem(5);
+        }
+    }
+
+    &--alternative {
+        #{$name}__name {
+            text-transform: unset;
+            letter-spacing: unset;
+            font-size: rem(14);
+            font-weight: fw(medium);
+            font-family: $setting-font-family;
+            padding-right: rem(5);
+
+            @include helper-breakpoint(lg) {
+                width: auto;
+                font-size: rem(16);
+                padding: 0 rem(5) 0 0;
+            }
+        }
+
+        #{$name}__value {
+            font-size: rem(14);
+
+            @include helper-breakpoint(lg) {
+                width: auto;
+                font-size: rem(16);
+                padding: 0;
+            }
+        }
+    }
+}
