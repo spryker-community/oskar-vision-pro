@@ -21,6 +21,7 @@
 		62DA57202C91BE2800ADFA92 /* oskar.png in Resources */ = {isa = PBXBuildFile; fileRef = 62DA571F2C91BE2800ADFA92 /* oskar.png */; };
 		62DA57222C91BF7100ADFA92 /* CategoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA57212C91BF7100ADFA92 /* CategoryList.swift */; };
 		62DA57242C91CE8000ADFA92 /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA57232C91CE8000ADFA92 /* DemoView.swift */; };
+		62DA57262C91EE5600ADFA92 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA57252C91EE5600ADFA92 /* AppState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		62DA571F2C91BE2800ADFA92 /* oskar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = oskar.png; sourceTree = "<group>"; };
 		62DA57212C91BF7100ADFA92 /* CategoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryList.swift; sourceTree = "<group>"; };
 		62DA57232C91CE8000ADFA92 /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
+		62DA57252C91EE5600ADFA92 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 		62DA56F12C91956100ADFA92 = {
 			isa = PBXGroup;
 			children = (
+				62DA57252C91EE5600ADFA92 /* AppState.swift */,
 				62DA56FC2C91956100ADFA92 /* OskarVisionPro */,
 				62DA56FD2C91956100ADFA92 /* Packages */,
 				62DA56FB2C91956100ADFA92 /* Products */,
@@ -196,6 +199,7 @@
 				62DA57242C91CE8000ADFA92 /* DemoView.swift in Sources */,
 				62DA57062C91956100ADFA92 /* ImmersiveView.swift in Sources */,
 				62DA571C2C91BAB300ADFA92 /* Model3DView.swift in Sources */,
+				62DA57262C91EE5600ADFA92 /* AppState.swift in Sources */,
 				62DA57142C91B24300ADFA92 /* HeaderView.swift in Sources */,
 				62DA57162C91B2DE00ADFA92 /* ProductListView.swift in Sources */,
 				62DA57182C91B33900ADFA92 /* ProductData.swift in Sources */,

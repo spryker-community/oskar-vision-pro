@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct OskarSupport: View {
-    @State private var cartItems: [CartItem] = [] // Assuming CartItem is defined elsewhere
+    @StateObject private var appState = AppState.shared
+    @State private var isCheckingOut = false
+    @State private var checkoutStatus: CheckoutStatus = .notStarted
     
     var body: some View {
         VStack {
@@ -21,11 +23,11 @@ struct OskarSupport: View {
                 Text("Cart Summary")
                     .font(.headline)
                 
-                ForEach(cartItems) { item in
+                ForEach(appState.cartItems, id: \.product.id) { item in
                     HStack {
-                        Text(item.name)
+                        Text(item.product.name)
                         Spacer()
-                        Text("$\(item.price, specifier: "%.2f")")
+                        Text("\(item.quantity) x $\(item.product.price, specifier: "%.2f")")
                     }
                 }
                 
@@ -40,16 +42,31 @@ struct OskarSupport: View {
                 }
                 
                 Button(action: {
-                    // Implement checkout action
-                    print("Proceeding to checkout")
+                    isCheckingOut = true
+                    simulateCheckout()
                 }) {
-                    Text("Checkout")
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                    if isCheckingOut {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                    } else {
+                        Text("Checkout")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .foregroundColor(.white)
+                    }
                 }
+                .disabled(isCheckingOut)
+                .background(isCheckingOut ? Color.gray : Color.blue)
+                .cornerRadius(10)
                 .padding(.top)
+                
+                if checkoutStatus != .notStarted {
+                    Text(checkoutStatus.message)
+                        .foregroundColor(.green)
+                        .padding(.top)
+                }
             }
             .padding()
             .background(Color.secondary.opacity(0.1))
@@ -61,14 +78,36 @@ struct OskarSupport: View {
     }
     
     private var cartTotal: Double {
-        cartItems.reduce(0) { $0 + $1.price }
+        appState.cartItems.reduce(0) { $0 + ($1.product.price * Double($1.quantity)) }
+    }
+    
+    private func simulateCheckout() {
+        checkoutStatus = .processing
+        
+        // Simulate a network request
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            checkoutStatus = .success
+            appState.cartItems.removeAll()
+            isCheckingOut = false
+        }
     }
 }
 
-struct CartItem: Identifiable {
-    let id = UUID()
-    let name: String
-    let price: Double
+enum CheckoutStatus {
+    case notStarted
+    case processing
+    case success
+    
+    var message: String {
+        switch self {
+        case .notStarted:
+            return ""
+        case .processing:
+            return "Processing your order..."
+        case .success:
+            return "Order placed successfully!"
+        }
+    }
 }
 
 #Preview {
