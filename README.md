@@ -4,7 +4,7 @@ This is a mono repository for an immersive shopping platform that connects a Swi
 
 ## Setting up the project
 
-You will find the independet setup notes in the directories for the according sub-project
+You will find the independent setup notes in the directories for the according sub-project
 
-- [Spryker B2C Shop](./spyker/README.md)
+- [Spryker B2C Shop](./spryker/README.md)
 - [SwiftUI Frontend](./OskarVisionPro/README.md)
