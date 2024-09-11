@@ -10,7 +10,8 @@ class AbstractProductsReader extends SprykerAbstractProductsReader
 {
     public const PRODUCT_MODEL_DATA = [
         216 => '/assets/models/oskar.usdz',
-        998 => '\Pyz\Shared\ProductModel\Models\2.stl',
+        217 => '/assets/models/price.usdz',
+        219 => '/assets/models/box.usdz',
         997 => '\Pyz\Shared\ProductModel\Models\3.stl',
         996 => '\Pyz\Shared\ProductModel\Models\4.stl',
     ];
