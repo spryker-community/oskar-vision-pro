@@ -38,6 +38,7 @@ struct ProductListView: View {
                         .padding(10)
                         .background(selectedProduct?.id == product.id ? Color.white.opacity(0.2) : Color.clear)
                         .contentShape(Rectangle())
+                        .hoverEffect(.lift)
                         .onTapGesture {
                             selectedProduct = product
                         }
