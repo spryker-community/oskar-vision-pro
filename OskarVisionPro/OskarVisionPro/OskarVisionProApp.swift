@@ -20,6 +20,7 @@ struct OskarVisionProApp: App {
                     ContentView(product: selectedProduct)
                 }
             }
+            //Model3DView()
         }
         .windowStyle(.plain)
         .windowResizability(.contentSize)

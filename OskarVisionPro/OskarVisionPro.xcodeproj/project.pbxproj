@@ -16,6 +16,8 @@
 		62DA57142C91B24300ADFA92 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA57132C91B24300ADFA92 /* HeaderView.swift */; };
 		62DA57162C91B2DE00ADFA92 /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA57152C91B2DE00ADFA92 /* ProductListView.swift */; };
 		62DA57182C91B33900ADFA92 /* ProductData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA57172C91B33900ADFA92 /* ProductData.swift */; };
+		62DA571C2C91BAB300ADFA92 /* Model3DView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA571B2C91BAB300ADFA92 /* Model3DView.swift */; };
+		62DA571E2C91BDA300ADFA92 /* OskarSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA571D2C91BDA300ADFA92 /* OskarSupport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		62DA57132C91B24300ADFA92 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		62DA57152C91B2DE00ADFA92 /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
 		62DA57172C91B33900ADFA92 /* ProductData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductData.swift; sourceTree = "<group>"; };
+		62DA571B2C91BAB300ADFA92 /* Model3DView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model3DView.swift; sourceTree = "<group>"; };
+		62DA571D2C91BDA300ADFA92 /* OskarSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OskarSupport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,8 @@
 				62DA57122C91A8B900ADFA92 /* Assets */,
 				62DA57012C91956100ADFA92 /* OskarVisionProApp.swift */,
 				62DA57032C91956100ADFA92 /* ContentView.swift */,
+				62DA571D2C91BDA300ADFA92 /* OskarSupport.swift */,
+				62DA571B2C91BAB300ADFA92 /* Model3DView.swift */,
 				62DA57152C91B2DE00ADFA92 /* ProductListView.swift */,
 				62DA57172C91B33900ADFA92 /* ProductData.swift */,
 				62DA57052C91956100ADFA92 /* ImmersiveView.swift */,
@@ -176,7 +182,9 @@
 			files = (
 				62DA57042C91956100ADFA92 /* ContentView.swift in Sources */,
 				62DA57022C91956100ADFA92 /* OskarVisionProApp.swift in Sources */,
+				62DA571E2C91BDA300ADFA92 /* OskarSupport.swift in Sources */,
 				62DA57062C91956100ADFA92 /* ImmersiveView.swift in Sources */,
+				62DA571C2C91BAB300ADFA92 /* Model3DView.swift in Sources */,
 				62DA57142C91B24300ADFA92 /* HeaderView.swift in Sources */,
 				62DA57162C91B2DE00ADFA92 /* ProductListView.swift in Sources */,
 				62DA57182C91B33900ADFA92 /* ProductData.swift in Sources */,

@@ -92,13 +92,7 @@ struct ContentView: View {
 
                 // ---- Right Pane ---------------------------------------------------
                 VStack {
-                    // ---- Oskar Support -----------------------------------------------------
-                    VStack {
-                        Text("Ask Oskar anything about the product.")
-                    }
-                    .frame(width: 300, alignment: .leading)
-                    .padding()
-                    .glassBackgroundEffect()
+                    
                 }
             }
         }
