@@ -9,10 +9,20 @@ import SwiftUI
 
 @main
 struct OskarVisionProApp: App {
+    @State private var selectedProduct: Product?
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            VStack {
+                HeaderView()
+                HStack {
+                    ProductListView(selectedProduct: $selectedProduct)
+                    ContentView(product: selectedProduct)
+                }
+            }
         }
+        .windowStyle(.plain)
+        .windowResizability(.contentSize)
 
         ImmersiveSpace(id: "ImmersiveSpace") {
             ImmersiveView()

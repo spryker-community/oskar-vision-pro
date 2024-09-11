@@ -13,6 +13,9 @@
 		62DA57062C91956100ADFA92 /* ImmersiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA57052C91956100ADFA92 /* ImmersiveView.swift */; };
 		62DA57082C91956200ADFA92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62DA57072C91956200ADFA92 /* Assets.xcassets */; };
 		62DA570B2C91956200ADFA92 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62DA570A2C91956200ADFA92 /* Preview Assets.xcassets */; };
+		62DA57142C91B24300ADFA92 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA57132C91B24300ADFA92 /* HeaderView.swift */; };
+		62DA57162C91B2DE00ADFA92 /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA57152C91B2DE00ADFA92 /* ProductListView.swift */; };
+		62DA57182C91B33900ADFA92 /* ProductData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DA57172C91B33900ADFA92 /* ProductData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		62DA57072C91956200ADFA92 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62DA570A2C91956200ADFA92 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		62DA570C2C91956200ADFA92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62DA57132C91B24300ADFA92 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		62DA57152C91B2DE00ADFA92 /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
+		62DA57172C91B33900ADFA92 /* ProductData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,12 +64,16 @@
 		62DA56FC2C91956100ADFA92 /* OskarVisionPro */ = {
 			isa = PBXGroup;
 			children = (
+				62DA57122C91A8B900ADFA92 /* Assets */,
 				62DA57012C91956100ADFA92 /* OskarVisionProApp.swift */,
 				62DA57032C91956100ADFA92 /* ContentView.swift */,
+				62DA57152C91B2DE00ADFA92 /* ProductListView.swift */,
+				62DA57172C91B33900ADFA92 /* ProductData.swift */,
 				62DA57052C91956100ADFA92 /* ImmersiveView.swift */,
 				62DA57072C91956200ADFA92 /* Assets.xcassets */,
 				62DA570C2C91956200ADFA92 /* Info.plist */,
 				62DA57092C91956200ADFA92 /* Preview Content */,
+				62DA57132C91B24300ADFA92 /* HeaderView.swift */,
 			);
 			path = OskarVisionPro;
 			sourceTree = "<group>";
@@ -82,6 +92,13 @@
 				62DA570A2C91956200ADFA92 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		62DA57122C91A8B900ADFA92 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +177,9 @@
 				62DA57042C91956100ADFA92 /* ContentView.swift in Sources */,
 				62DA57022C91956100ADFA92 /* OskarVisionProApp.swift in Sources */,
 				62DA57062C91956100ADFA92 /* ImmersiveView.swift in Sources */,
+				62DA57142C91B24300ADFA92 /* HeaderView.swift in Sources */,
+				62DA57162C91B2DE00ADFA92 /* ProductListView.swift in Sources */,
+				62DA57182C91B33900ADFA92 /* ProductData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +313,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OskarVisionPro/Preview Content\"";
+				DEVELOPMENT_TEAM = 6NFUM25US9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
@@ -318,6 +339,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OskarVisionPro/Preview Content\"";
+				DEVELOPMENT_TEAM = 6NFUM25US9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "$(TARGET_NAME)/Info.plist";
